@@ -1,12 +1,152 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+<div :class="isShowMenu? 'main-wrap-right-slide': ''" class="main-wrap">
+  <!-- 导航 -->
+  <menu-list
+    @change-status="changeStatus"
+    :is-show-menu="isShowMenu"
+    class="main-menu main-menu-left-side"
+    :headerList="testList"> 
+  </menu-list>
+  <!-- 主题内容 -->
+  <div class="main-content">
+    <Header
+      @emit-showmenu="emitShowMenu"
+      :is-show-menu="isShowMenu"
+     />
+    <router-view />
   </div>
-  <router-view/>
+</div>
 </template>
 
-<style>
+<script lang="ts">
+// import "./common/index.less";
+import Header from './components/Header.vue';
+import MenuList, { MenusProps } from './components/menu-list.vue';
+import { defineComponent, ref, getCurrentInstance, watch, watchEffect, onMounted } from 'vue'
+export default defineComponent ({
+  components: {
+    Header,
+    MenuList
+  },
+  // emits: ['change-status'],
+  setup() {
+
+    const instance = getCurrentInstance();
+    // console.log('instance', instance);
+    const isShowMenu = ref< boolean >(false);
+    const arr = ref< number[]> ([12]);
+
+    const testList: MenusProps[] = [
+      {
+        title: '首页',
+        url: '/',
+        icon: 'icon-home'
+      },
+      {
+        title: '文章',
+        url: '/blogs',
+        icon: 'icon-file-common'
+      },
+      {
+        title: '留言板',
+        url: '/message',
+        icon: 'icon-file-common'
+      },
+      {
+        title: '个人',
+        url: '/person',
+        icon: 'icon-morentouxiang'
+      }
+    ]
+    watchEffect(() => console.log(instance))
+
+    // 检测路由变化 等待更好的写法
+    // watch(() => instance, (value) => {
+    //   console.log('to', value);
+    //   isShowMenu.value = false;
+    //   },{ deep: true }
+    // )
+    
+    const changeStatus = (value: boolean): void => {
+      console.log('emit-parent', value);
+      isShowMenu.value = value;
+    };
+
+    const emitShowMenu = (val: boolean) => {
+      console.log(val);
+      isShowMenu.value = val;
+    }
+
+    return {
+      emitShowMenu,
+      isShowMenu,
+      testList,
+      changeStatus,
+      arr
+    }
+  }
+})
+</script>
+
+<style lang="less" scoped>
+// @import url('./common/index.less');
+/* require('') */
+.main-wrap-right-slide {
+  position: relative;
+  transform: translate3d(60%,0,0);
+  .main-menu-left-side {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+  }
+
+}
+.main-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  transition: 0.3s ease;
+  font-size: 14px;
+  .main-menu {
+    width: 60%;
+    min-height: 100vh;
+    margin-left: -60%;
+    flex-shrink: 0;
+    background-color: #f9fafb;
+    color: #4c555a;
+    font-size: 14px;
+  }
+  .main-content {
+    width: 100%;
+    height: 80px;
+    background-color: #26a2ff;
+    flex-shrink: 0;
+  }
+}
+.header {
+  font-size: 26px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  margin: 0 15px;
+  .header-icon {
+    .iconfont {
+      font-size: 40px;
+    }
+  }
+  .header-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .name {
+      margin-right: 10px;
+    }
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -15,16 +155,7 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+// #nav a.router-link-exact-active {
+//   color: #42b983;
+// }
 </style>

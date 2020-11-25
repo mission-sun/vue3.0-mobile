@@ -1,13 +1,10 @@
 <template>
   <div class="home">
-    home
+    person
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
-// const demo01 = () => <div>Vue 3.0</div>;
-
 export default defineComponent({
   name: 'Home',
   components: {
