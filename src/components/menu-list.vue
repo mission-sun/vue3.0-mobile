@@ -1,8 +1,12 @@
 <template>
   <div class="list-box" ref="menuRef">
     <ul class="menu-list-box">
-      <li class="menu-item" v-for="(item, index) in headerList" :key="index">
-        <router-link :to="item.url">
+      <li 
+        class="menu-item" 
+        v-for="(item, index) in headerList" :key="index"
+        @click="changeActive(index)"
+      >
+        <router-link :to="item.url" :class="[ activeIndex === index? 'active': '']">
            <i class="iconfont" :class="item.icon"></i>
            <span @click="changeName" class='item-name'> {{ item.title }} </span>
         </router-link> 
@@ -39,6 +43,7 @@ export default defineComponent ({
   },
   emits: ['change-status'],
   setup(props, contexts) {
+    const activeIndex = ref< number >(0);
     const menuRef = ref< null | HTMLElement >(null);
     const isShow = useIsClickOutSide(menuRef);
     watch(isShow,
@@ -56,7 +61,8 @@ export default defineComponent ({
         console.log('aa-打开', props.isShowMenu);
       }
     })
-    const changeName = () => {
+    const changeActive = (index: number) => {
+      activeIndex.value = index;
       // aa.isSHowMenu.value = true
     };
     // 计算属性就需要放在computed 中
@@ -75,8 +81,9 @@ export default defineComponent ({
     // const list = props.headerList;
     // console.log('list', list.value);
     return {
-      changeName,
-      menuRef
+      menuRef,
+      activeIndex,
+      changeActive
     }
   },
   watch: {
@@ -99,6 +106,8 @@ export default defineComponent ({
     justify-content: center;
     align-items: center;
     .menu-item {
+      width: 150px;
+      text-align: left;
       padding: 10px 0;
       height: 50px;
       line-height: 50px;
@@ -110,6 +119,9 @@ export default defineComponent ({
       .item-name {
         margin-left: 10px;
       }
+    }
+    .active {
+      color: red;
     }
   }
 }

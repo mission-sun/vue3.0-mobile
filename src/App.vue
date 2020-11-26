@@ -13,6 +13,8 @@
       @emit-showmenu="emitShowMenu"
       :is-show-menu="isShowMenu"
      />
+     <focus-image />
+    <common-title />
     <router-view />
   </div>
 </div>
@@ -20,19 +22,32 @@
 
 <script lang="ts">
 // import "./common/index.less";
+import { useStore } from 'vuex'
 import Header from './components/Header.vue';
 import MenuList, { MenusProps } from './components/menu-list.vue';
-import { defineComponent, ref, getCurrentInstance, watch, watchEffect, onMounted } from 'vue'
+import CommonTitle from './components/CommonTitle.vue';
+import FocusImage from './components/FouseImage.vue';
+
+import { defineComponent, ref, getCurrentInstance, nextTick, computed, watch, watchEffect, onMounted } from 'vue'
 export default defineComponent ({
   components: {
     Header,
-    MenuList
+    CommonTitle,
+    MenuList,
+    FocusImage
   },
   // emits: ['change-status'],
   setup() {
+    const store = useStore();
+    const instance: any = getCurrentInstance();
 
-    const instance = getCurrentInstance();
-    // console.log('instance', instance);
+    // watch(() => instance, (value) => {
+    //   console.log('to', value);
+    //   // isShowMenu.value = false;
+    //   },{ deep: true }
+    // )
+
+    console.log('instance', instance.ctx.$router.currentRoute.value.path);
     const isShowMenu = ref< boolean >(false);
     const arr = ref< number[]> ([12]);
 
@@ -58,14 +73,19 @@ export default defineComponent ({
         icon: 'icon-morentouxiang'
       }
     ]
-    watchEffect(() => console.log(instance))
-
+    // watchEffect(() => console.log(instance))
+    // const ctx = computed(instance, (value) => {
+    //   return value
+    // })
     // 检测路由变化 等待更好的写法
-    // watch(() => instance, (value) => {
-    //   console.log('to', value);
-    //   isShowMenu.value = false;
-    //   },{ deep: true }
-    // )
+    watchEffect(() => {
+      if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
+        console.log('instance.ctx', instance.ctx.$router.currentRoute);
+        store.commit('changeTitle', instance.ctx.$router.currentRoute.value.path);
+        isShowMenu.value = false;
+      }
+      // id.value = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
+    })
     
     const changeStatus = (value: boolean): void => {
       console.log('emit-parent', value);
@@ -109,6 +129,7 @@ export default defineComponent ({
   flex-wrap: nowrap;
   transition: 0.3s ease;
   font-size: 14px;
+  background-color: #f4f5f5;
   .main-menu {
     width: 60%;
     min-height: 100vh;
