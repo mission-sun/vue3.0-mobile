@@ -6,7 +6,7 @@
         v-for="(item, index) in headerList" :key="index"
         @click="changeActive(index)"
       >
-        <router-link :to="item.url" :class="[ activeIndex === index? 'active': '']">
+        <router-link active-class="active" :to="item.url">
            <i class="iconfont" :class="item.icon"></i>
            <span @click="changeName" class='item-name'> {{ item.title }} </span>
         </router-link> 

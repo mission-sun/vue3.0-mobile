@@ -27,6 +27,7 @@ import Header from './components/Header.vue';
 import MenuList, { MenusProps } from './components/menu-list.vue';
 import CommonTitle from './components/CommonTitle.vue';
 import FocusImage from './components/FouseImage.vue';
+import Demo from './views/demo';
 
 import { defineComponent, ref, getCurrentInstance, nextTick, computed, watch, watchEffect, onMounted } from 'vue'
 export default defineComponent ({
@@ -34,7 +35,8 @@ export default defineComponent ({
     Header,
     CommonTitle,
     MenuList,
-    FocusImage
+    FocusImage,
+    Demo
   },
   // emits: ['change-status'],
   setup() {
@@ -46,8 +48,6 @@ export default defineComponent ({
     //   // isShowMenu.value = false;
     //   },{ deep: true }
     // )
-
-    console.log('instance', instance.ctx.$router.currentRoute.value.path);
     const isShowMenu = ref< boolean >(false);
     const arr = ref< number[]> ([12]);
 
@@ -80,7 +80,6 @@ export default defineComponent ({
     // 检测路由变化 等待更好的写法
     watchEffect(() => {
       if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
-        console.log('instance.ctx', instance.ctx.$router.currentRoute);
         store.commit('changeTitle', instance.ctx.$router.currentRoute.value.path);
         isShowMenu.value = false;
       }

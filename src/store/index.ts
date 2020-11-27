@@ -12,7 +12,8 @@ export default createStore({
   state: {
     currentTile: '推荐阅读',
     blogList: [],
-    messageList: []
+    messageList: [],
+    blogDetail: {}
   },
   mutations: {
     changeTitle(state, value) {
@@ -25,7 +26,10 @@ export default createStore({
     },
     changeMessageList(state, value) {
       state.messageList = value;
-    } 
+    },
+    changeBlogDetail(state, value) {
+      state.blogDetail = value;
+    }
   },
   actions: {
     getBlogsList({commit, state}, value) {
@@ -39,11 +43,20 @@ export default createStore({
         commit('changeMessageList', res);
       })
     },
+    getBlogDetail({commit, state}, value) {
+      console.log('value', value);
+      get(apis.getDetail, value).then( res => {
+        console.log('store', res);
+        commit('changeBlogDetail', res);
+      })
+    },
   },
   getters: {
     currentTile: state => state.currentTile,
     blogList: state => state.blogList,
-    messageList: state => state.messageList
+    messageList: state => state.messageList,
+    blogDetail: state => state.blogDetail
+
   },
   modules: {
   }
