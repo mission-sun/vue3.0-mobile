@@ -115,6 +115,7 @@ export default defineComponent({
         }
         .message {
           margin: 10px 0;
+          font-size: 28px;
           line-height: 40px;
         }
         .time {
