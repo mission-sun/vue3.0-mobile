@@ -135,7 +135,7 @@ export default defineComponent({
     .message {
       display: block;
       float: none;
-      width: 100%;
+      width: 90%;
       height: 120px;
       margin-bottom: 10px;
       color: #535a63;
@@ -157,6 +157,7 @@ export default defineComponent({
   .mes-text {
     height: 100px;
     line-height: 100px;
+    font-size: 35px;
     text-align:center;
   }
   .message-name {

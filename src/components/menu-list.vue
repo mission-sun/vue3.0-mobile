@@ -8,7 +8,7 @@
       >
         <router-link active-class="active" :to="item.url">
            <i class="iconfont" :class="item.icon"></i>
-           <span @click="changeName" class='item-name'> {{ item.title }} </span>
+           <span class='item-name'> {{ item.title }} </span>
         </router-link> 
       </li>
     </ul>
@@ -63,32 +63,11 @@ export default defineComponent ({
     })
     const changeActive = (index: number) => {
       activeIndex.value = index;
-      // aa.isSHowMenu.value = true
     };
-    // 计算属性就需要放在computed 中
-    // const list = props.headerList.values(item => {
-    //   item.title = '1121';
-    //   return item;
-    // })
-    // watch(['isShow', 'props.isSHowMenu'],
-    //   ([one, two]) => {
-    //     console.log('one', one);
-    //     console.log('two', two);
-    //     // contexts.emit('change-status', value);
-    //     // console.log('value-is-show', value);
-    //   }
-    // )
-    // const list = props.headerList;
-    // console.log('list', list.value);
     return {
       menuRef,
       activeIndex,
       changeActive
-    }
-  },
-  watch: {
-    isSHowMenu() {
-      console.log('监听数值变化1212');
     }
   }
 })

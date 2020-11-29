@@ -7,65 +7,68 @@
           <input class="title" v-model="blog.title" type="text" placeholder="请输入文章标题">
         </div>
       </div> -->
-      <!-- <mavon-editor 
-      defaultOpen="preview"
-      :subfield="false"
-      :boxShadow="false"
-      :transition="false"
-      :toolbarsFlag="false"
-      previewBackground="#fff"
-      v-model="blog.content"/> -->
-      <mavon-editor
-      v-model="value1"/>
+      <div v-html="blogHtml">
+      </div>
     </div>
   </div>
 </template>
 <script>
-import mavonEditor from 'mavon-editor'
+import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
 import { useStore } from 'vuex';
-import { computed, ref, defineComponent, getCurrentInstance, watchEffect, toRefs } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+import { computed, ref, defineComponent, getCurrentInstance, watchEffect, toRefs, onMounted } from 'vue';
 export default  {
   name: "create",
   components: {
-    mavonEditor
   },
-  // setup() {
-  //   const store = useStore();
-  //   const instance: any = getCurrentInstance();
-  //   const value = ref<string>('');
+  setup() {
+    const md = new MarkdownIt(
+      {
+        highlight: function (str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return '<pre class="hljs"><code>' +
+                    hljs.highlight(lang, str, true).value +
+                    '</code></pre>';
+            } catch (__) {}
+          } 
+          return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+        }
+      }
+    );
+    const store = useStore();
+    // const route = useRoute();
+    const router = useRouter();
+    const currentId = useRoute().query.id;
+    console.log('currentId', useRoute().query.id);
 
-  //   watchEffect(() => {
-  //     if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
-  //       console.log('instance.ctx', instance.ctx.$router.currentRoute.value.query.id);
-  //       const _id = instance.ctx.$router.currentRoute.value.query.id;
-  //       store.dispatch('getBlogDetail', {_id});
-  //     }
-  //   })
-  //   const blog = computed(() => {
-  //     console.log('blog-detial', store.getters.blogDetail);
-  //     return store.getters.blogDetail
-  //   })
-  //   return {
-  //     blog,
-  //     value
-  //   }
-  // },
-  data() {                      
+    onMounted(() => {
+      store.dispatch('getBlogDetail', {_id: currentId});
+    })
+  
+    const blogHtml = computed(() => {
+      console.log('blog-detial', store.getters.blogDetail);
+      if (store.getters.blogDetail.content) {
+        return md.render(store.getters.blogDetail.content)
+       }
+    })
     return {
-      value1: '',
-      id: '',
-      title: ''
-    };
+      blogHtml
+    }
   }
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .main-edit {
   position: relative;
   margin: 0 auto;
   margin-top: 60px;
-   .editorHeader {
+  background-color: #fff;
+  padding: 25px;
+  .editorHeader {
     display: flex;  
     align-items: center;
     justify-content: space-between;
@@ -85,14 +88,30 @@ export default  {
         outline: none;
       }
     }
-    .right-box {
-      .publish {
-        font-size: 14px;
-        white-space: nowrap;
-        color: #007fff;
-        cursor: pointer;
-      }
-    }
+  }
+  p {
+    line-height: 40px;
+    font-size: 30px;
+    text-indent: 30px;
+    color: #555;
+
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #333;
+    background: #f8f8f8;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font: initial;
+    line-height: 80px;
+    font-weight: bold;
   }
 }
 </style>

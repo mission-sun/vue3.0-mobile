@@ -16,6 +16,7 @@
      <focus-image />
     <common-title />
     <router-view />
+    <Footer />
   </div>
 </div>
 </template>
@@ -24,6 +25,7 @@
 // import "./common/index.less";
 import { useStore } from 'vuex'
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import MenuList, { MenusProps } from './components/menu-list.vue';
 import CommonTitle from './components/CommonTitle.vue';
 import FocusImage from './components/FouseImage.vue';
@@ -36,6 +38,7 @@ export default defineComponent ({
     CommonTitle,
     MenuList,
     FocusImage,
+    Footer,
     Demo
   },
   // emits: ['change-status'],

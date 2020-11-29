@@ -18,8 +18,7 @@ export default defineComponent ({
   // },
   setup(props, contexts) {
     const store = useStore();
-    const title = computed(() => store.getters.currentTile);
-
+    const title = computed(() => store.getters.currentTile.title);
     store.commit('changeTitle', 'myname');
     console.log('title', title.value);
     return {

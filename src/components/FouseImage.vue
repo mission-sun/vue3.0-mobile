@@ -3,7 +3,7 @@
     <div class="home-main-img">
     </div>
     <div class="home-main-quotos">
-      择一城终老，遇一人白首
+      {{ title }}
     </div>
   </div>
 </template>
@@ -13,7 +13,8 @@ export interface UserProps {
   name?: string;
   id?: number;
 }
-import { defineComponent, ref, PropType } from 'vue'
+import { defineComponent, ref, PropType,computed } from 'vue'
+import { useStore } from 'vuex'; 
 export default defineComponent ({
   name: 'global-header',
   emits: ['emit-showmenu'],
@@ -24,12 +25,15 @@ export default defineComponent ({
   },
   setup(props, contexts) {
     const isShowMenu = ref< boolean >(false);
+    const store = useStore();
+    const title = computed(() => store.getters.currentTile.quotos);
     const showMenu = (): void => {
       isShowMenu.value = !props.isShowMenu;
       contexts.emit('emit-showmenu', isShowMenu.value);
     };
     return {
-      showMenu
+      showMenu,
+      title
     }
   }
 })

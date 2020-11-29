@@ -1,8 +1,8 @@
 <template>
   <div class="main-section" v-for="(data, index) in list" :key="index">
-    <!-- <div class="section-top">
+    <div v-if ="isShowImg" class="section-top">
       <img class="blog-title-img" :src="data.image" alt="动画">
-    </div> -->
+    </div>
     <div class="section-bottom">
       <p class="time">{{data.time}}</p>
       <router-link class="title" :to="{ path: '/detail', query: { id: data._id }}">
@@ -11,8 +11,7 @@
       <p class="desc">
         {{ data.content }}
       </p>
-      <!-- <p><i class="iconfont icon-shenglvehao"></i>
-      </p> -->
+      <!-- <p><i class="iconfont icon-shenglvehao"></i></p> -->
     </div>
   </div>
 </template>
@@ -27,6 +26,10 @@ export default defineComponent ({
     index: {
       type: Number,
       default: 0
+    },
+    isShowImg: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props) {
@@ -50,15 +53,11 @@ export default defineComponent ({
 </script>
 <style lang="less" scoped>
 .main-section {
-  // &:first-child{
-  //   margin-top: 30px;
-  // }
   margin: 0 auto;
-  // margin: 0 15px 30px;
-  // display: flex;
   overflow: hidden;
   // flex-wrap:wrap;  /*换行*/
   // justify-content: center;
+  padding-top: 30px;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   border-bottom: 1px solid #f5f5f5;

@@ -6,7 +6,7 @@
       择一城终老，遇一人白首
     </div> -->
     <div class='section-list-wrap'>
-      <main-section :blogList='blogList' />
+      <main-section :blogList='blogList' :is-show-img="false" />
     </div>
   </div>
 </template>

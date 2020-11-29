@@ -2,15 +2,37 @@ import { createStore } from 'vuex'
 import apis from '../api'
 import { get, post } from '../service/service';
 
+
+// 择一城终老，遇一人白bai首。挽一帘幽梦，许一世倾城。
+
+// 择一du人相爱，等一人终老。痴一人深情，留一世繁华。
+
+// 断一根琴弦，留一曲离别。我背弃一切，共度朝夕。
+
 const config: any = {
-  '/' :'推荐阅读',
-  '/blogs' :'文章列表',
-  '/message' :'留言列表',
-  '/person' :'个人信息' 
+  '/' : {
+      title: '推荐阅读',
+      quotos: '择一城终老，遇一人白首'
+    },
+  '/blogs' :{
+    title: '文章列表',
+    quotos: '挽一帘幽梦，许一世倾城'
+  },
+  '/message' :{
+    title: '留言列表',
+    quotos: '痴一人深情，留一世繁华'
+  },
+  '/person' :{
+    title: '个人信息',
+    quotos: '断一根琴弦，留一曲离别'
+  } 
 }
 export default createStore({
   state: {
-    currentTile: '推荐阅读',
+    currentTile: {
+      title: '推荐阅读',
+      quotos: '择一城终老，遇一人白首'
+    },
     blogList: [],
     messageList: [],
     blogDetail: {}
