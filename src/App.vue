@@ -91,6 +91,7 @@ export default defineComponent ({
       console.log('useRoute()', route.path);
       if (route.path) {
         isShowMenu.value = false;
+        store.commit('changeTitle', route.path);
       }
       // if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
       //   store.commit('changeTitle', instance.ctx.$router.currentRoute.value.path);

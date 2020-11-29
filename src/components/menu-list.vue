@@ -90,13 +90,13 @@ export default defineComponent ({
       padding: 10px 0;
       height: 50px;
       line-height: 50px;
-      font-size: 30px;
       color: #333;
       .iconfont {
         vertical-align: -5%;
       }
       .item-name {
         margin-left: 10px;
+        font-size: 30px;
       }
     }
     .active {

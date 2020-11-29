@@ -20,7 +20,6 @@ export default defineComponent ({
     const store = useStore();
     const title = computed(() => store.getters.currentTile.title);
     store.commit('changeTitle', 'myname');
-    console.log('title', title.value);
     return {
       title
     }
