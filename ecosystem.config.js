@@ -1,22 +1,32 @@
 module.exports = {
   apps : [{
+    name: 'nodeDeployfe',
     script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
+    args: 'one two',
+    instances: 1,
+    autorestart: true,
+    watch: false,
+    max_memory_restart: '1G',
+    env: {
+      NODE_ENV: 'development'
+    },
+    env_production: {
+      NODE_ENV: 'production'
+    }
   }],
 
   deploy : {
     production : {
-      user : 'SSH_USERNAME',
-      host : 'SSH_HOSTMACHINE',
+      user : 'root-mission',
+      host : '154.8.204.98',
       ref  : 'origin/master',
-      repo : 'GIT_REPOSITORY',
-      path : 'DESTINATION_PATH',
-      'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
+      repo : 'https://github.com/mission-sun/vue3.0-mobile.git',
+      path : '/home/root-mission/blog/web-mobile',
+      'pre-deploy': "git fetch",
+      'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && rm -rf ./../dist-mobile && mv dist dist-mobile && mv -f dist-mobile ./..'
     }
   }
 };
+
+
+// 'post-deploy' : 'npm install && npm run build && pm2 start build.sh  --interpreter bash'
