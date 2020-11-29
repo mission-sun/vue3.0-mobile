@@ -1,7 +1,8 @@
 const api = {
   getList: '/api/blog/list',
   getmessage: 'api/message/getmessage',
-  getDetail: '/api/blog/detail'
+  getDetail: '/api/blog/detail',
+  saveMessage: '/api/message/create'
 }
 export default api;
 

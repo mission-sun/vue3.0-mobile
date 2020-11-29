@@ -72,6 +72,13 @@ export default createStore({
         commit('changeBlogDetail', res);
       })
     },
+    saveMessage({commit, state}, value) {
+      console.log('value', value);
+      post(apis.saveMessage, value).then( res => {
+        console.log('save-message', res);
+        // commit('changeBlogDetail', res);
+      })
+    },
   },
   getters: {
     currentTile: state => state.currentTile,

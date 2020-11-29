@@ -32,21 +32,13 @@
           </div>
         </div>
       </div>
-      <!-- <input
-        type="textarea"
-        placeholder="你的鼓励是我前进的动力"
-        v-model="message"
-        maxlength="50"
-        show-word-limit
-      >
-      <input /> -->
       <div class="message-name-box">
         <textarea
           class="message"
           placeholder="一定是上天让我们再次相遇的"         
           v-model="message"
-          type="text" />
-          <a class='message-btn' href="javascript:void(0)">
+           />
+          <a class='message-btn' @click="saveMessage" href="javascript:void(0)">
             留下你的脚步
           </a>
         <!-- <button @click="saveMessage" size="small">提交</button> -->
@@ -63,10 +55,27 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const message = ref('');
+    const defaultName = ['宋江', '卢俊义', '吴用', '公孙胜', '关胜', '林冲', '秦明', '呼延灼', '花荣', '柴进', '李应', '朱仝', '鲁智深', '武松', '董平', '张清', '杨志', '徐宁', '索超', '戴宗', '刘唐', '李逵', '史进', '穆弘', '雷横', '李俊', '阮小二', '张衡', '阮小五', '张顺', '阮小七', '杨雄', '石秀', '解珍', '解宝', '燕青', '朱武', '黄信', '孙立', '宣赞', '郝思文', '韩涛', '彭玘', '单廷圭', '魏定国', '萧让', '裴宣', '欧鹏', '邓飞', '燕顺', '杨林', '凌震', '蒋敬', '吕方', '郭盛', '安道全', '皇甫瑞', '王英', '一丈青', '鲍旭', '樊瑞', '孔明', '孔亮', '项充', '李衮', '金大坚', '马麟', '童威', '童猛', '孟康', '侯健', '陈达', '杨春', '郑天寿', '陶宗旺', '宋清', '乐和', '龚旺', '丁得孙', '穆春', '曹正', '宋万', '杜迁', '薛永', '施恩', '周通', '李忠', '杜兴', '汤隆', '邹润', '邹渊', '朱富', '朱贵', '蔡福', '蔡庆', '李立', '李云', '焦挺', '石勇', '孙新', '顾大嫂', '张青', '孙二娘', '王定六', '郁保四', '白胜', '时迁', '段景住']
+
     const list = computed(() => store.getters.messageList);
     store.dispatch('getMessageList', 'list');
+    const saveMessage = () => {
+      const item = {
+        name: defaultName[Math.ceil(Math.random()*100)],
+        message: message.value,
+        time: new Date().getTime()
+      };
+      store.dispatch('saveMessage', item).then(res => {
+        console.log('callback', res);
+        message.value = '';
+        store.dispatch('getMessageList', 'list');
+      })
+    }
     return {
-      list
+      list,
+      message,
+      saveMessage
     }
   }
 });
