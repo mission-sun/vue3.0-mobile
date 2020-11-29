@@ -24,6 +24,7 @@
 <script lang="ts">
 // import "./common/index.less";
 import { useStore } from 'vuex'
+import { useRoute, useRouter } from 'vue-router'
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import MenuList, { MenusProps } from './components/menu-list.vue';
@@ -81,12 +82,20 @@ export default defineComponent ({
     //   return value
     // })
     // 检测路由变化 等待更好的写法
+    
+    // currentRoute
+    // const route = new useRoute();
+    const route = useRoute();
+
     watchEffect(() => {
-      if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
-        store.commit('changeTitle', instance.ctx.$router.currentRoute.value.path);
+      console.log('useRoute()', route.path);
+      if (route.path) {
         isShowMenu.value = false;
       }
-      // id.value = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
+      // if (instance && instance.ctx && instance.ctx.$router.currentRoute.value.path) {
+      //   store.commit('changeTitle', instance.ctx.$router.currentRoute.value.path);
+      //   isShowMenu.value = false;
+      // }
     })
     
     const changeStatus = (value: boolean): void => {
