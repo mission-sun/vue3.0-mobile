@@ -23,7 +23,7 @@ module.exports = {
       repo : 'https://github.com/mission-sun/vue3.0-mobile.git',
       path : '/home/root-mission/blog/web-mobile',
       'pre-deploy': "git fetch",
-      'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && rm -rf ./../dist-mobile && mv dist dist-mobile && mv -f dist-mobile ./..'
+      'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && rm -rf ./../../dist-mobile && mv dist dist-mobile && mv -f ../dist-mobile ./../../'
     }
   }
 };
