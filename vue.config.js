@@ -9,8 +9,8 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://fe.mission-sun.cn/', // 源地址
-        changeOrigin: true, // 改变源
-        ws: true,
+        changeOrigin: false, // 改变源
+        ws: false,
       },
     }
   }

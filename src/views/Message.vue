@@ -92,6 +92,7 @@ export default defineComponent({
       .list-item {
         padding: 0 15px;
         display: flex;
+        min-height: 100px;
       }
       .icon {
         width: 40px;

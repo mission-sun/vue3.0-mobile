@@ -43,7 +43,7 @@ export default defineComponent ({
   position: relative;
   .home-main-img {
     height: 400px;
-    background: url(https://2heng.xin/wp-content/uploads//2017/08/午後_58898122.jpg) no-repeat center center;
+    background: url(../assets/header.jpg) no-repeat center center;
     background-size: cover;
   }
   .home-main-quotos {

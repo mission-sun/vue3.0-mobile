@@ -1,8 +1,11 @@
 <template>
-  <div class="home-wrap">
+  <!-- <div class="home-wrap">
     <div class='section-list-wrap'>
       <main-section :blogList='blogList' />
     </div>
+  </div> -->
+  <div class="home">
+    待更新，敬请期待
   </div>
 </template>
 
@@ -30,11 +33,18 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid yellowgreen;
+  line-height: 100px;
+}
 .home-wrap {
   position: relative;
   .home-main-img {
     height: 400px;
-    background: url(https://2heng.xin/wp-content/uploads//2017/08/午後_58898122.jpg) no-repeat center center;
+    // background: url(https://2heng.xin/wp-content/uploads//2017/08/午後_58898122.jpg) no-repeat center center;
     background-size: cover;
   }
   .home-main-quotos {
