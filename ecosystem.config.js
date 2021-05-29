@@ -20,7 +20,7 @@ module.exports = {
       user : 'root-mission',
       host : '154.8.204.98',
       ref  : 'origin/master',
-      repo : 'git@github.com:mission-sun/mission-blog-koa.git',
+      repo : 'git@github.com:mission-sun/vue3.0-mobile.git',
       path : '/home/root-mission/blog/web-mobile',
       'pre-deploy': "git fetch",
       'post-deploy' : 'bash build.sh'
