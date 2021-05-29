@@ -7,7 +7,7 @@
         @click="changeActive(index)"
       >
         <router-link active-class="active" :to="item.url">
-           <i class="iconfont" :class="item.icon"></i>
+           <!-- <i class="iconfont" :class="item.icon"></i> -->
            <span class='item-name'> {{ item.title }} </span>
         </router-link> 
       </li>
@@ -85,6 +85,7 @@ export default defineComponent ({
     justify-content: center;
     align-items: center;
     .menu-item {
+      list-style: none;
       width: 150px;
       text-align: left;
       padding: 10px 0;

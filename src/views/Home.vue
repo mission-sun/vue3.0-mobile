@@ -5,12 +5,12 @@
     <div class="home-main-quotos">
       择一城终老，遇一人白首
     </div> -->
-    <!-- <div class='section-list-wrap'>
+    <div class='section-list-wrap'>
       <main-section :blogList='blogList' :is-show-img="false" />
-    </div> -->
-    <div class="home">
-      待更新，敬请期待
     </div>
+    <!-- <div class="home">
+      待更新，敬请期待
+    </div> -->
   </div>
 </template>
 
@@ -48,6 +48,7 @@ export default defineComponent({
 }
 .home-wrap {
   position: relative;
+  border-top: 0.01333rem solid #f5f5f5;
   .home-main-img {
     height: 400px;
     // background: url(https://2heng.xin/wp-content/uploads//2017/08/午後_58898122.jpg) no-repeat center center;

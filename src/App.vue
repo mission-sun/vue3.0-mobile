@@ -120,6 +120,16 @@ export default defineComponent ({
 })
 </script>
 
+<style lang="less">
+html, body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;  
+  color: #666;
+}
+</style>
 <style lang="less" scoped>
 // @import url('./common/index.less');
 /* require('') */

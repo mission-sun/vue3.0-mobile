@@ -7,16 +7,13 @@
       <div class="message-list">
         <div class="list-item">
           <div class="icon">
-            <i class="iconfont icon-morentouxiang"></i>
+            <!-- <i class="iconfont icon-morentouxiang"></i> -->
           </div>
           <div class="item-box">
-            <p class="name">博主 <span class="top1">置顶</span></p>
-            <p class="message">大家任意留言，发布后会生成一个名字（从水浒108人中随机产生）, <span style="color:red">如果您的名字是宋江（红包50），吴用（10元），武松（5元），林冲（2元），鲁智深（1元）</span>,当出现如上名字的时候，会发给大家对应的红包!
-            <br>
-            目前留言没有做限制，请合理留言，谢谢！
-            </p>
-
-            <p class="time">上线时刻</p>
+            <!-- <p class="name">博主 <span class="top1">置顶</span></p> -->
+            <!-- <p class="message">大家任意留言，发布后会生成一个名字（从水浒108人中随机产生）, <span style="color:red">如果您的名字是宋江（红包50），吴用（10元），武松（5元），林冲（2元），鲁智深（1元）</span>,当出现如上名字的时候，会发给大家对应的红包!
+            </p> -->
+            <p class="message">欢迎大家留言</p>
           </div>
         </div>
         <div v-for="(item, index) in list" :key="index" class="list-item">
@@ -35,9 +32,10 @@
       <div class="message-name-box">
         <textarea
           class="message"
-          placeholder="一定是上天让我们再次相遇的"         
+          placeholder="随便说两句"         
           v-model="message"
            />
+
           <a class='message-btn' @click="saveMessage" href="javascript:void(0)">
             留下你的脚步
           </a>
@@ -146,7 +144,7 @@ export default defineComponent({
     .message {
       display: block;
       float: none;
-      width: 90%;
+      width: 100%;
       height: 120px;
       margin-bottom: 10px;
       color: #535a63;

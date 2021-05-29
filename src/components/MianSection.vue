@@ -9,7 +9,7 @@
         {{ data.title }}
       </router-link>
       <p class="desc">
-        {{ data.content }}
+        {{ data.description }}
       </p>
       <!-- <p><i class="iconfont icon-shenglvehao"></i></p> -->
     </div>
@@ -57,16 +57,16 @@ export default defineComponent ({
   overflow: hidden;
   // flex-wrap:wrap;  /*换行*/
   // justify-content: center;
-  padding-top: 30px;
+  // padding-top: 30px;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   border-bottom: 1px solid #f5f5f5;
-  padding-bottom: 20px;
+  // padding-bottom: 20px;
   .section-bottom {
-    color: #999;
-    width: 350PX;
+    color: #bbb;
+    // width: 350PX;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 0 20px;
     .time {
       display: flex;
       align-items: center;
@@ -98,6 +98,7 @@ export default defineComponent ({
       font-size: 30px;
       line-height: 45px;
       color: #999;
+      margin: 0 0 10px;
     }
     .user-status {
       display: flex;
