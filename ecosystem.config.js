@@ -23,10 +23,11 @@ module.exports = {
       repo : 'git@github.com:mission-sun/mission-blog-koa.git',
       path : '/home/root-mission/blog/web-mobile',
       'pre-deploy': "git fetch",
-      'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && rm -rf ./../../dist-mobile && mkdir dist-mobile && mv dist dist-mobile && mv -f ../dist-mobile ./../../'
+      'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && bash build.sh'
     }
   }
 };
 
+// 'post-deploy' : 'npm install --registry=https://registry.npm.taobao.org && npm run build && rm -rf ./../../dist-mobile && mkdir dist-mobile && mv dist dist-mobile && mv -f ../dist-mobile ./../../'
 
 // 'post-deploy' : 'npm install && npm run build && pm2 start build.sh  --interpreter bash'
