@@ -1,15 +1,20 @@
 #!/bin/sh
 
-#rm -rf test
+npm install --registry=https://registry.npm.taobao.org
 
-# npm install
+npm run build
 
-APP_NAME="swift"
+APP_NAME="dist-mobile"
 
-mkdir $APP_NAME
-# mkdir -p /home/root-mission/blog/$APP_NAME
+rm -rf /home/root-mission/blog/$APP_NAME
 
-# cp -r dist/*  /Users/sunmingxin/code/vue-ts/$APP_NAME
+# rm -rf /home/root-mission/blog/$APP_NAME
+
+# mkdir $APP_NAME 当前源码的文件
+
+mkdir -p /home/root-mission/blog/$APP_NAME
+
+cp -r dist/*  /home/root-mission/blog/$APP_NAME
 
 
 # /home/root-mission/blog/web-mobile/source
