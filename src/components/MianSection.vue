@@ -61,9 +61,9 @@ export default defineComponent ({
   background: rgb(255, 255, 255);
   border-radius: 10px;
   border-bottom: 1px solid #f5f5f5;
-  // padding-bottom: 20px;
+  padding-bottom: 20px;
   .section-bottom {
-    color: #bbb;
+    color: #999;
     // width: 350PX;
     box-sizing: border-box;
     padding: 0 20px;
